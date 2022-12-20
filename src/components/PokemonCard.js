@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     height: 90,
   },
   name: {
-    color: "white",
+    color: "#fff",
     fontWeight: "bold",
     fontSize: 15,
     paddingTop: 10,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 10,
     top: 10,
-    color: "white",
+    color: "#fff",
     fontSize: 11,
   },
 });
