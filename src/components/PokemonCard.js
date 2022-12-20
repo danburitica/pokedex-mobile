@@ -1,14 +1,19 @@
 import React from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableWithoutFeedback,
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    TouchableWithoutFeedback,
 } from "react-native";
+import { capitalize } from "lodash";
+import getColorByPokemonType from "../utils/getColorByPokemonType";
 
 export default function PokemonCard({ pokemon }) {
   const { name, type, order, image } = pokemon;
+
+  const pokemonColor = getColorByPokemonType(type);
+  const bgColor = { backgroundColor: pokemonColor, ...styles.bgColor };
 
   const goToPokemon = () => {
     console.log(`Go to Pokemon ${name}`);
@@ -18,9 +23,9 @@ export default function PokemonCard({ pokemon }) {
     <TouchableWithoutFeedback onPress={goToPokemon}>
       <View style={styles.card}>
         <View style={styles.spacing}>
-          <View style={styles.bgColor}>
+          <View style={bgColor}>
             <Text style={styles.order}>#{`${order}`.padStart(3, 0)}</Text>
-            <Text style={styles.name}>{name}</Text>
+            <Text style={styles.name}>{capitalize(name)}</Text>
             <Image source={{ uri: image }} style={styles.image} />
           </View>
         </View>
@@ -39,7 +44,9 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   bgColor: {
-    backgroundColor: "green",
+    flex: 1,
+    borderRadius: 15,
+    padding: 10,
   },
   image: {
     position: "absolute",
@@ -55,10 +62,10 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   order: {
-    position: 'absolute',
+    position: "absolute",
     right: 10,
     top: 10,
     color: "white",
     fontSize: 11,
-  }
+  },
 });
