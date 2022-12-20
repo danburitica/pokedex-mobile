@@ -1,9 +1,9 @@
 import { API_URI } from "../utils/constants";
 
-export async function getPokemonsApi() {
+export async function getPokemonsApi(nextUrl) {
   try {
     const url = `${API_URI}/pokemon?limit=20&offset=0`;
-    const response = await fetch(url);
+    const response = await fetch(nextUrl ?? url);
     const result = await response.json();
     return result;
   } catch (error) {
